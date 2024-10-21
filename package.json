@@ -1,0 +1,15 @@
+{
+  "name": "portonics_test_backend",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "index.js",
+  "scripts": {
+    "dev" : "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nazmus Sakib",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
