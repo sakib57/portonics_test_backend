@@ -4,6 +4,7 @@ import authRouter from './src/auth/router.js'
 import cors from 'cors'
 import { config } from "dotenv";
 import userRouter from "./src/user/router.js";
+import orderRouter from "./src/order/router.js";
 config();
 
 const app = express();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth",authRouter)
 app.use("/users",userRouter)
+app.use("/orders",orderRouter)
 
 
 app.listen(port, () => {

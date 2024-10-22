@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 config();
 
+// Verifying auth token
 const authenticateToken = (req, res, next) => {
   const token = req.header("Authorization");
   if (!token) {

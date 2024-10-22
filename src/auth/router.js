@@ -1,5 +1,4 @@
 import express from "express";
-// import db from "../lib/db.js";
 import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
