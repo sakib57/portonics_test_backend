@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `order` ADD COLUMN `paymentStatus` VARCHAR(255) NOT NULL DEFAULT 'PENDING';

@@ -19,10 +19,12 @@ model User {
 model Order {
   id              Int    @id @default(autoincrement())
   customerName    String @db.VarChar(255)
-  customerEmail   String @unique @db.VarChar(255)
-  customerPhone   String @unique @db.VarChar(255)
-  customerAddress String @unique @db.VarChar(255)
+  customerEmail   String @db.VarChar(255)
+  customerPhone   String @db.VarChar(255)
+  customerAddress String @db.VarChar(255)
   amount          Int
   productName     String @db.VarChar(255)
   productDetails  String @db.VarChar(255)
+  invoiceId       String @db.VarChar(255)
+  paymentStatus   String @db.VarChar(255) @default("PENDING")
 }
