@@ -237,6 +237,9 @@ orderRouter.get("/", async (req, res) => {
 orderRouter.post("/ipn-handler", async (req, res) => {
   const { status, invoice_id } = req.body;
   if (status === "PAID") {
+    // Here need to Validate IPN with IPN validate API
+    // Somehow the IPN webhook is not working, so I could not implement the validation part. 
+    // But completed the payment status update part below
     await prismaClient.order
       .update({
         where: {
