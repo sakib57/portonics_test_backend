@@ -23,6 +23,77 @@ const portPosAuthToken = generateAuthorization(
 
 
 // Create Order and Invoice route
+/**
+ * @swagger
+ * /orders/create:
+ *  post:
+ *    tags:
+ *      - Order
+ *    description: User Register
+ *    parameters:
+ *     - name: customerName
+ *       description: Customer Name
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerEmail
+ *       description: Customer email
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerPhone
+ *       description: Customer phone number
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerStreet
+ *       description: Customer Street name
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerCity
+ *       description: Customer City name
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerState
+ *       description: Customer State
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerZipCode
+ *       description: Customer Zip Code
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: customerCountry
+ *       description: Customer Country Name
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: amount
+ *       description: Amount to be paid
+ *       in: json
+ *       required: true
+ *       type: number
+ *     - name: productName
+ *       description: Product Name
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: productDetails
+ *       description: Product Detaile
+ *       in: json
+ *       required: true
+ *       type: string
+ *    security:
+ *      - bearerAuth: []
+ *    responses:
+ *      200:
+ *        description: Successful login
+ *      401:
+ *        description: Unauthorized
+ */
 orderRouter.post("/create", async (req, res) => {
   const {
     customerName,
@@ -100,6 +171,23 @@ orderRouter.post("/create", async (req, res) => {
 
 
 // Get invoice with invoice id
+/**
+ * @swagger
+ * /orders/invoice:
+ *  post:
+ *    tags:
+ *      - Order
+ *    description: Get Invoice
+ *    parameters:
+ *    - name: invoiceId
+ *      description: Invoice Id
+ *      in: json
+ *      required: true
+ *      type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 orderRouter.post("/invoice", async (req, res) => {
   const { invoiceId } = req.body;
   // console.log(invoiceId);
@@ -121,6 +209,17 @@ orderRouter.post("/invoice", async (req, res) => {
 
 
 // Get all orders
+/**
+ * @swagger
+ * /orders:
+ *  get:
+ *    tags:
+ *      - Order
+ *    description: Get All Orders
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 orderRouter.get("/", async (req, res) => {
   await prismaClient.order
     .findMany()

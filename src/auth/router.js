@@ -9,9 +9,36 @@ const prismaClient = new PrismaClient();
 const authRouter = express.Router();
 
 // Register route
+/**
+ * @swagger
+ * /register:
+ *  post:
+ *    tags:
+ *      - Auth
+ *    description: User Register
+ *    parameters:
+ *     - name: userName
+ *       description: User Name
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: email
+ *       description: User email
+ *       in: json
+ *       required: true
+ *       type: string
+ *     - name: password
+ *       description: User Password
+ *       in: json
+ *       required: true
+ *       type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 authRouter.post("/register", async (req, res) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const { userName, email, password } = req.body;
     const userExist = await prismaClient.user.findUnique({
       where: {
@@ -52,8 +79,29 @@ authRouter.post("/register", async (req, res) => {
   }
 });
 
-
 // Login route
+/**
+ * @swagger
+ * /login:
+ *  post:
+ *    tags:
+ *      - Auth
+ *    description: User Login
+ *    parameters:
+ *    - name: email
+ *      description: User email
+ *      in: json
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: User Password
+ *      in: json
+ *      required: true
+ *      type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 authRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;

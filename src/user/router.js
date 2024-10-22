@@ -7,6 +7,17 @@ const userRouter = express.Router();
 
 
 // Get user
+/**
+ * @swagger
+ * /users/find-with-token:
+ *  get:
+ *    tags:
+ *      - User
+ *    description: Get User Data
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 userRouter.get("/find-with-token", authenticateToken, async (req, res) => {
   try {
     const user = await prismaClient.user.findUnique({
