@@ -2,6 +2,7 @@ import express from "express";
 import CryptoJS from "crypto-js";
 import { PrismaClient } from "@prisma/client";
 import { config } from "dotenv";
+import authenticateToken from "../middlewares/authMiddleware";
 config();
 
 const prismaClient = new PrismaClient();
@@ -94,7 +95,7 @@ const portPosAuthToken = generateAuthorization(
  *      401:
  *        description: Unauthorized
  */
-orderRouter.post("/create", async (req, res) => {
+orderRouter.post("/create",authenticateToken, async (req, res) => {
   const {
     customerName,
     customerEmail,
@@ -188,7 +189,7 @@ orderRouter.post("/create", async (req, res) => {
  *      200:
  *        description: Success
  */
-orderRouter.post("/invoice", async (req, res) => {
+orderRouter.post("/invoice",authenticateToken, async (req, res) => {
   const { invoiceId } = req.body;
   // console.log(invoiceId);
   fetch(`https://api-sandbox.portwallet.com/payment/v2/invoice/${invoiceId}`, {
@@ -220,7 +221,7 @@ orderRouter.post("/invoice", async (req, res) => {
  *      200:
  *        description: Success
  */
-orderRouter.get("/", async (req, res) => {
+orderRouter.get("/",authenticateToken, async (req, res) => {
   await prismaClient.order
     .findMany()
     .then((data) => {
